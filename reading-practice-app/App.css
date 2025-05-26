@@ -1,0 +1,53 @@
+.app-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 40px 20px;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  
+  .sentence-big {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 30px 0;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+  
+  .success {
+    color: green;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  
+  .fail {
+    color: red;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  
+  .spoken {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  .difficulty-buttons button {
+    font-size: 1.5rem;
+    padding: 12px 30px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
