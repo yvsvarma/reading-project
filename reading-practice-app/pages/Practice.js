@@ -24,6 +24,14 @@ function Practice() {
 
   const username = localStorage.getItem('username') || '';
 
+  const speakText = (text) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   const getInitialTime = (level) => {
     switch (level) {
       case 'beginner': return 15;
@@ -72,19 +80,19 @@ function Practice() {
         setScore((prev) => prev + 1);
         setRetryCount(0);
         savePerformance({ sentence, correct: true, timeTaken, retries: retryCount });
-        speechSynthesis.speak(new SpeechSynthesisUtterance("Great job!"));
+        speakText("Great job!");
       } else {
         setStatus('failed');
         setRetryCount((prev) => prev + 1);
         savePerformance({ sentence, correct: false, timeTaken, retries: retryCount });
-        speechSynthesis.speak(new SpeechSynthesisUtterance("Try again!"));
+        speakText("Try again!");
       }
     },
     onFail: () => {
       if (!recognitionCompletedRef.current) {
         recognitionCompletedRef.current = true;
         setStatus('failed');
-        speechSynthesis.speak(new SpeechSynthesisUtterance("Try again!"));
+        speakText("Try again!");
       }
     },
     paused
@@ -103,7 +111,7 @@ function Practice() {
             clearInterval(intervalRef.current);
             stop();
             setStatus('failed');
-            speechSynthesis.speak(new SpeechSynthesisUtterance("Try again!"));
+            speakText("Try again!");
           }
           return prev - 1;
         });
@@ -144,6 +152,7 @@ function Practice() {
 
   const handleDifficultySelect = (level) => {
     setDifficulty(level);
+    speakText("Starting reading practice"); // Unlock audio on mobile
     fetchSentence(level);
   };
 
